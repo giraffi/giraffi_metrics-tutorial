@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Highcharts Example</title>
+    <style type="text/css">
+      pre {
+        height: 200px;
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #9C9898;
+        -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+        list-style: none;
+      }
+    </style>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    
+$(function () {
+  // ************** Settings **************
+  var GIRAFFI_URL = "ws://web03.m.xenzai.com:3123/",
+      SINGLE_LINE_QUERY_STRING = "fields=time,val&tags=load,shortterm",
+      MULTI_LINE_QUERY_STRING = "fields=time,val,tags&tags=cpu,user",
+      start = document.getElementById("start");
+  // **************************************
+  
+  start.addEventListener("click", function() {
+    SingleLineChart();
+    MultiLineChart();
+  });
+
+  /*
+   * Highchartのグローバルセッティング
+   *
+   */
+  Highcharts.setOptions({
+    global: {useUTC: false}
+  });
+  
+  /*
+   *************************************************************
+   * シングルラインチャート
+   *
+   *************************************************************
+   */
+  function SingleLineChart() {
+    var chart,
+        ws,
+        log = document.getElementById('container1_log'),
+        log_array = [],
+        apikey = document.getElementById("apikey").value,
+        src = document.getElementById("src").value;
+        
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'container1'
+      },
+      title: {
+        text: 'Single line chart',
+        x: -20 //center
+      },
+      subtitle: {
+        text: 'Source: collectd',
+        x: -20
+      },
+      xAxis: {
+        type: 'datetime'
+      },
+      yAxis: {
+        title: {
+          text: 'Val'
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      },
+      series: [{
+        name: 'load:shortterm',
+        data: []
+      }]
+    });
+
+    ws = new WebSocket( GIRAFFI_URL + apikey + "/?" + SINGLE_LINE_QUERY_STRING + "&src=" + src);
+        
+    ws.onmessage = function (e) {
+      logging(e);
+      
+      var series = chart.series[0];
+      
+      e.data.split("\n").forEach(function(data){
+        payload = data.split(",");
+        series.addPoint([payload[0] * 1000, +payload[1]], false, series.data.length >= 20); 
+      })
+    };
+    
+    function logging(e) {
+      log_array.push(e.data);
+      while(log_array.length > 13) {
+        log_array.shift();
+      }
+      log.innerHTML = log_array.join("\r\n");
+    }
+    
+    single_timer = setInterval(function() {
+      chart.redraw();
+    }, 1000)
+  }
+  /*
+   *************************************************************
+   * マルチラインチャート
+   *
+   *************************************************************
+   */
+  function MultiLineChart() {
+    var chart,
+        ws,
+        prev_data = []
+        series,
+        log = document.getElementById('container2_log'),
+        log_array = [],
+        apikey = document.getElementById("apikey").value,
+        src = document.getElementById("src").value;
+
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'container2'
+      },
+      title: {
+        text: 'Multi line chart',
+        x: -20 //center
+      },
+      subtitle: {
+        text: 'Cpu user time rate',
+        x: -20
+      },
+      xAxis: {
+        type: 'datetime'
+      },
+      yAxis: {
+        title: {
+          text: 'Val'
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      },
+      series: [
+        {
+          name: 'core: 0',
+          data: []
+        },
+        {
+          name: 'core: 1',
+          data: []
+        },
+        {
+          name: 'core: 2',
+          data: []
+        },
+        {
+          name: 'core: 3',
+          data: []
+        },
+        {
+          name: 'core: 4',
+          data: []
+        },
+        {
+          name: 'core: 5',
+          data: []
+        },
+        {
+          name: 'core: 6',
+          data: []
+        },
+        {
+          name: 'core: 7',
+          data: []
+        },
+      ]
+    });
+    
+    var series = chart.series;
+
+    ws = new WebSocket(GIRAFFI_URL + apikey + "/?" + MULTI_LINE_QUERY_STRING + "&src=" + src);
+
+    ws.onmessage = function (e) {
+      
+      e.data.split("\n").forEach(function(data){
+        logging(data);
+        var payload = data.split(","),
+            time = payload.shift(),
+            val = payload.shift(),
+            tags = payload,
+            tags_str = tags.join(),
+            matched,
+            cpu_num,
+            prev_datum,
+            prot_val;
+
+        if (matched = tags_str.match(/,(\d),/)) {
+          cpu_num = +matched[1]
+          prev_datum = prev_data[cpu_num];
+          
+          // store previous data to use at next event
+          prev_data[cpu_num] = [time, val];
+          
+          // 前回データがなければスキップ
+          if (!prev_datum) return;
+          
+          prot_val = (val - prev_datum[1]) / (time - prev_datum[0]);
+          series[cpu_num].addPoint([Math.floor(time) * 1000, prot_val], false, series[cpu_num].data.length >= 20); 
+        }
+      });
+    };
+    
+    function logging(data) {
+      log_array.push(data);
+      while(log_array.length > 25) {
+        log_array.shift();
+      }
+      log.innerHTML = log_array.join("\r\n");
+    }
+    
+    setInterval(function() {
+      chart.redraw();
+    }, 1000)
+ }
+});
+    </script>
+
+</head>
+<body>
+
+<script src="js/highcharts.src.js"></script>
+<script src="js/modules/exporting.js"></script>
+
+<label><b>Apikey:</b><input id='apikey' style="width: 350px" value="sTyBGlV-LsQcI8mhMYI3nvqtkYvVoERMb-mz8yhhgCU" /></label>
+<label><b>Src:</b><input id='src' style="width: 250px" value="cld257-0.m.xenzai.com" /></label>
+<button id="start">Start</button>
+
+<div id="container1" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<pre id="container1_log"></pre>
+
+<hr />
+
+<div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<pre id="container2_log" style="height: 350px;"></pre>
+
+
+</body>
+</html>
