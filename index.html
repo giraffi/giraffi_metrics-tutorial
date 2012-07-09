@@ -18,7 +18,7 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
     <script type="text/javascript">
-    
+
 $(function () {
   // ************** Settings **************
   var GIRAFFI_URL = "wss://ws.giraffi.jp:4443",
@@ -26,7 +26,7 @@ $(function () {
       MULTI_LINE_QUERY_STRING = "fields=time,val,tags&tags=cpu,user",
       start = document.getElementById("start");
   // **************************************
-  
+
   start.addEventListener("click", function() {
     SingleLineChart();
     MultiLineChart();
