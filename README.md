@@ -7,7 +7,6 @@ publishes and retrieves metrics with low latency.
 We show a sample client app that retrieves metrics over WebSocket and renders timeline charts.
 
   
-
 # Getting Started
 
 ## Scenario
@@ -15,7 +14,6 @@ We show a sample client app that retrieves metrics over WebSocket and renders ti
 1. A procuder ([collectd](http://collectd.org/)) gathers and sends metrics continuously to the Giraffi Metrics (which behaves as Message Broker). 
 2. A client app retrieves metrics from the Giraffi Metrics (which behaves as Messaging gateway) over WebSocket.
 3. A client app starts rendering timeline charts parsing the retrieved metrics.
-
 
 ## Requirements
 
@@ -145,15 +143,5 @@ Edit the following lines in `giraffi_metrics_tutorial/index.html` to change sett
 	 26       MULTI_LINE_QUERY_STRING = "fields=time,val,tags&tags=cpu,user",
 	 27       start = document.getElementById("start");
 	 28   // **************************************
-
-
-
- 
- 
-
-
-
-
-  
 
 
