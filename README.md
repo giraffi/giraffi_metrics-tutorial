@@ -1,6 +1,6 @@
 # Giraffi Metrics tutorial
 
-Here you can find the Getting Started with the `Giraffi Metrics`, 
+Here you can find the Getting Started with the **Giraffi Metrics**, 
  resource monitoring service that measures,   
 publishes and retrieves metrics with low latency.   
 
