@@ -108,10 +108,10 @@ Note: Only *Publish* block is used with the AMQP plug-in for the Giraffi Metrics
 `Format` Sepcifies the format (*Command* or *JSON*) in which messages are sent to the broker. Must set to `JSON`.
 
 Finally run `collectd`, it starts gathering and publishing metrics.
-
+```sh
 	$ sudo /opt/collectd/sbin/collectd -t /opt/collectd/etc/collectd.conf  # Tests config and exit
 	$ sudo /opt/collectd/sbin/collectd -C /opt/collectd/etc/collectd.conf  # Makes run with the specified config
-
+```
 ## Start retrieving metrics
 
 Once you set up the producer, now it's time to retrieve metrics over WebSocket.
