@@ -1,7 +1,7 @@
 # Giraffi Metrics tutorial
 
 Here you can find the Getting Started with the **Giraffi Metrics**, 
- resource monitoring service that measures,   
+ resource monitoring service that collects,   
 publishes and retrieves metrics with low latency.   
 
 We show a sample client app that retrieves metrics over WebSocket and renders timeline charts.
