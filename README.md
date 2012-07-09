@@ -4,7 +4,10 @@ Here you can find a sample client for the Giraffi Metrics, resource monitoring s
 
 # Getting Started
 
+## Requirements
+
 ## Setup the producer
 
 ## Start retrieving metrcis
+
 
