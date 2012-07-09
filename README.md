@@ -8,6 +8,6 @@ Here you can find a sample client for the Giraffi Metrics, resource monitoring s
 
 ## Setup the producer
 
-## Start retrieving metrcis
+## Start retrieving metrics
 
 
