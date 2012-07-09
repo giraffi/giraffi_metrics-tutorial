@@ -2,12 +2,12 @@
 
 Here you can find a sample client for the Giraffi Metrics, resource monitoring service that measures, publishes and retrieves metrics with low latency.
 
-# Getting Started
+## Getting Started
 
-## Requirements
+### Requirements
 
-## Setup the producer
+### Setup the producer
 
-## Start retrieving metrcis
+### Start retrieving metrcis
 
 
