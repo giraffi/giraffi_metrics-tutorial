@@ -34,65 +34,69 @@ Please refer to the [collectd installation guide](http://collectd.org/download.s
 The configuration file can be found, e.g. `/opt/collectd/etc/collectd.conf`.   
  First in the `Global` section, set `Interval` to a value between 1 and 60 seconds at least.
 ```sh
-	##############################################################################
-	# Global                                                                     #
-	#----------------------------------------------------------------------------#
-	# Global settings for the daemon.                                            #
-	##############################################################################
-	
-	#Hostname    ""
-	#FQDNLookup   true
-	#BaseDir     "/opt/collectd/var/lib/collectd"
-	#PIDFile     "/opt/collectd/var/run/collectd.pid"
-	#PluginDir   "/opt/collectd/lib/collectd"
-	#TypesDB     "/opt/collectd/share/collectd/types.db"
-	Interval      10  # Set to 10 seconds
-	#Timeout      2
-	#ReadThreads  5
+##############################################################################
+# Global                                                                     #   
+#--------------------------------------------------------------Global--------------#
+# Global settings for the daemon.                                              #   
+#############################################daemon#################################
+
+#Hostname    ""  
+#FQDNLookup   true
+#BaseDir     "/opt/collectd/var/lib/collectd"
+#PIDFile     "/opt/collectd/var/run/collectd.pid"
+#PluginDir   "/opt/collectd/lib/collectd"collectd
+#TypesDB     "/opt/collectd/share/collectd/types.db"
+Interval      10  # Set to 10 seconds
+#Timeout      2   
+#ReadThreads  5
 ```
 
 Then enable the AMQP plug-in in `LoadPlugin` section.
 
-	##############################################################################
-	# LoadPlugin section                                                         #
-	#----------------------------------------------------------------------------#
-	# Lines beginning with a single `#' belong to plugins which have been built  #
-	# but are disabled by default.                                               #
-	#                                                                            #
-	# Lines begnning with `##' belong to plugins which have not been built due   #
-	# to missing dependencies or because they have been deactivated explicitly.  #
-	##############################################################################
+```sh
+##############################################################################
+# LoadPlugin section                                                         #
+#----------------------------------------------------------------------------#
+# Lines beginning with a single `#' belong to plugins which have been built  #
+# but are disabled by default.                                               #
+#                                                                            #
+# Lines begnning with `##' belong to plugins which have not been built due   #
+# to missing dependencies or because they have been deactivated explicitly.  #
+##############################################################################
 	
-	LoadPlugin amqp
-	##LoadPlugin apache
-	#LoadPlugin apcups
-	
-	snip..
+LoadPlugin amqp
+##LoadPlugin apache
+#LoadPlugin apcups
+
+snip..
+```
 
 And configure the AMQP plug-in settings with a server-specific AMQP Routing Key and user credentials.
 
-	##############################################################################
-	# Plugin configuration                                                       #
-	#----------------------------------------------------------------------------#
-	# In this section configuration stubs for each plugin are provided. A desc-  #
-	# ription of those options is available in the collectd.conf(5) manual page. #
-	##############################################################################
-	
-	## Send values to an AMQP broker
-	<Plugin "amqp">
-	 <Publish "name">
-	    Host "broker.giraffi.jp"
-	    Port "15671"
-	    VHost "/"
-	    User "256"
-	    Password "d229c5cf-370b-4ab3-b34c-9adbba9aa438"
-	    Exchange "collectd.json.topic"
-	    RoutingKey "giraffi.collectd.256"
-	    Persistent false
-	    StoreRates false
-	    Format "JSON"
-	  </Publish>
-	</Plugin>
+```sh
+##############################################################################
+# Plugin configuration                                                       #
+#----------------------------------------------------------------------------#
+# In this section configuration stubs for each plugin are provided. A desc-  #
+# ription of those options is available in the collectd.conf(5) manual page. #
+##############################################################################
+
+## Send values to an AMQP broker
+<Plugin "amqp">
+ <Publish "name">
+    Host "broker.giraffi.jp"
+    Port "15671"
+    VHost "/"
+    User "256"
+    Password "d229c5cf-370b-4ab3-b34c-9adbba9aa438"
+    Exchange "collectd.json.topic"
+    RoutingKey "giraffi.collectd.256"
+    Persistent false
+    StoreRates false
+    Format "JSON"
+  </Publish>
+</Plugin>
+```
 
 Note: Only *Publish* block is used with the AMQP plug-in for the Giraffi Metrics. 
 
