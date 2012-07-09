@@ -109,8 +109,8 @@ Note: Only *Publish* block is used with the AMQP plug-in for the Giraffi Metrics
 
 Finally run `collectd`, it starts gathering and publishing metrics.
 ```sh
-	$ sudo /opt/collectd/sbin/collectd -t /opt/collectd/etc/collectd.conf  # Tests config and exit
-	$ sudo /opt/collectd/sbin/collectd -C /opt/collectd/etc/collectd.conf  # Makes run with the specified config
+$ sudo /opt/collectd/sbin/collectd -t /opt/collectd/etc/collectd.conf  # Tests config and exit
+$ sudo /opt/collectd/sbin/collectd -C /opt/collectd/etc/collectd.conf  # Makes run with the specified config
 ```
 ## Start retrieving metrics
 
@@ -118,9 +118,9 @@ Once you set up the producer, now it's time to retrieve metrics over WebSocket.
 
 
 ### Setup the client
-
-	$ git://github.com/giraffi/giraffi_metrics_tutorial.git
-	
+```sh
+$ git://github.com/giraffi/giraffi_metrics_tutorial.git
+```	
 	
 ### Retrieve metrics over WebSocket
 
@@ -135,13 +135,13 @@ Once you set up the producer, now it's time to retrieve metrics over WebSocket.
 Edit the following lines in `giraffi_metrics_tutorial/index.html` to change settings (endpoint uri, query string, etc.). 
 
 
-
-	 22 $(function () {
-	 23   // ************** Settings **************
-	 24   var GIRAFFI_URL = "ws://web03.m.xenzai.com:3123/",
-	 25       SINGLE_LINE_QUERY_STRING = "fields=time,val&tags=load,shortterm",
-	 26       MULTI_LINE_QUERY_STRING = "fields=time,val,tags&tags=cpu,user",
-	 27       start = document.getElementById("start");
-	 28   // **************************************
-
+```javascript
+ 22 $(function () {
+ 23   // ************** Settings **************
+ 24   var GIRAFFI_URL = "ws://web03.m.xenzai.com:3123/",
+ 25       SINGLE_LINE_QUERY_STRING = "fields=time,val&tags=load,shortterm",
+ 26       MULTI_LINE_QUERY_STRING = "fields=time,val,tags&tags=cpu,user",
+ 27       start = document.getElementById("start");
+ 28   // **************************************
+```
 
