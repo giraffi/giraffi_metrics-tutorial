@@ -33,7 +33,7 @@ Please refer to the [collectd installation guide](http://collectd.org/download.s
 
 The configuration file can be found, e.g. `/opt/collectd/etc/collectd.conf`.   
  First in the `Global` section, set `Interval` to a value between 1 and 60 seconds at least.
-
+```sh
 	##############################################################################
 	# Global                                                                     #
 	#----------------------------------------------------------------------------#
@@ -49,7 +49,7 @@ The configuration file can be found, e.g. `/opt/collectd/etc/collectd.conf`.
 	Interval      10  # Set to 10 seconds
 	#Timeout      2
 	#ReadThreads  5
-
+```
 
 Then enable the AMQP plug-in in `LoadPlugin` section.
 
