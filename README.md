@@ -8,7 +8,7 @@ Here you can find the Getting Started with the **Giraffi Metrics**, resource mon
 ## Scenario
 
 1. A procuder ([collectd](http://collectd.org/)) gathers and sends metrics continuously to the Giraffi Metrics (which behaves as Message Broker). 
-2. A client app retrieves metrics from the Giraffi Metrics, a.k.a [Streaming API](https://github.com/giraffi/giraffi_metrics_tutorial/wiki/Streaming-API) over WebSocket.
+2. A client app retrieves metrics from the Giraffi Metrics, aka [Streaming API](https://github.com/giraffi/giraffi_metrics_tutorial/wiki/Streaming-API) over WebSocket.
 3. A client app starts rendering timeline charts parsing the retrieved metrics.
 
 ## Requirements
