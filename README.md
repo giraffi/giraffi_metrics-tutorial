@@ -151,6 +151,7 @@ When retrieving metrics, you can use query parameters for filtering the results.
 
 `fields` An array parameter that specifies the fields to return. The available field names are val, time and tags.  
 `tags` An array parameter that filters which type of metrics to return. The results contain at least one of the specified tags.
+`src` A string parameter that specifies the source/server where the producer gathers and sends data from.
 
 ```sh
 wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val&tags=load,shortterm # Returns a single row.
