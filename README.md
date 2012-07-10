@@ -8,7 +8,7 @@ Here you can find the Getting Started with the **Giraffi Metrics**, resource mon
 ## Scenario
 
 1. A procuder ([collectd](http://collectd.org/)) gathers and sends metrics continuously to the Giraffi Metrics (which behaves as Message Broker). 
-2. A client app retrieves metrics from the Giraffi Metrics, aka [Streaming API](https://github.com/giraffi/giraffi_metrics_tutorial/wiki/Streaming-API) over WebSocket.
+2. A client app retrieves metrics from the Giraffi Metrics, aka [Streaming API](https://github.com/giraffi/giraffi_metrics-tutorial/wiki/Streaming-API) over WebSocket.
 3. A client app starts rendering timeline charts parsing the retrieved metrics.
 
 ## Requirements
@@ -114,17 +114,17 @@ $ sudo /opt/collectd/sbin/collectd -C /opt/collectd/etc/collectd.conf  # Makes r
 ```
 ## Start retrieving metrics
 
-Once you set up and run the producer, now it's time to retrieve metrics from the [Streaming API](https://github.com/giraffi/giraffi_metrics_tutorial/wiki/Streaming-API) over WebSocket. The Streaming API returns the results in a so-called [CSV](http://en.wikipedia.org/wiki/Comma-separated_values) format, each row is located on a separate line, delimited by a line break (LF) and its fields, separated by commas, never contain line breaks (LF), double quotes and commas.
+Once you set up and run the producer, now it's time to retrieve metrics from the [Streaming API](https://github.com/giraffi/giraffi_metrics-tutorial/wiki/Streaming-API) over WebSocket. The Streaming API returns the results in a so-called [CSV](http://en.wikipedia.org/wiki/Comma-separated_values) format, each row is located on a separate line, delimited by a line break (LF) and its fields, separated by commas, never contain line breaks (LF), double quotes and commas.
 
 
 ### Set up the client
 ```sh
-$ git://github.com/giraffi/giraffi_metrics_tutorial.git
+$ git://github.com/giraffi/giraffi_metrics-tutorial.git
 ```	
 	
 ### Retrieve metrics over WebSocket
 
-1. Open `giraffi_metrics_tutorial/index.html` with the WebSocket compliant browser. 
+1. Open `giraffi_metrics-tutorial/index.html` with the WebSocket compliant browser. 
 2. Enter `Apikey` and `Src` (*hostname* where the collectd daemon is gathering resource info). 
 3. And then click `Start` to connect to the Giraffi Metrics.
 4. The app starts retrieving metrics and displays timeline charts.
@@ -132,7 +132,7 @@ $ git://github.com/giraffi/giraffi_metrics_tutorial.git
 
 ### Change settings
 
-Edit the following lines in `giraffi_metrics_tutorial/index.html` to change settings (endpoint uri, query string, etc.). 
+Edit the following lines in `giraffi_metrics-tutorial/index.html` to change settings (endpoint uri, query string, etc.). 
 
 
 ```javascript
