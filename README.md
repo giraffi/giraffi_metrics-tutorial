@@ -158,3 +158,6 @@ When retrieving metrics, you can use query parameters for filtering the results.
 ##### Returns multiple rows.
 	wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val,tags&tags=cpu,user&src=hoge.example.com
 
+## Note
+
+The Giraffi Metrics provides also the traditional [REST API](https://github.com/giraffi/giraffi_metrics-tutorial/wiki/REST-API) that returns deferred objects in the JSON format.
