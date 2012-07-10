@@ -114,7 +114,7 @@ $ sudo /opt/collectd/sbin/collectd -C /opt/collectd/etc/collectd.conf  # Makes r
 ```
 ## Start retrieving metrics
 
-Once you set up the producer, now it's time to retrieve metrics from the [Streaming API](https://github.com/giraffi/giraffi_metrics_tutorial/wiki/Streaming-API) over WebSocket. The Streaming API returns the results in the [CSV](http://en.wikipedia.org/wiki/Comma-separated_values) format.
+Once you set up the producer, now it's time to retrieve metrics from the [Streaming API](https://github.com/giraffi/giraffi_metrics_tutorial/wiki/Streaming-API) over WebSocket. The Streaming API returns the results so-called in the [CSV](http://en.wikipedia.org/wiki/Comma-separated_values) format, each row is located on a separate line, delimited by a line break (LF) and its fields never contains line breaks (LF), double quotes and commas.
 
 
 ### Setup the client
