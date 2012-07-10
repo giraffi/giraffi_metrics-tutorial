@@ -107,7 +107,7 @@ Note: Only *Publish* block is used with the AMQP plug-in for the Giraffi Metrics
 `StoreRates` Determines whether or not COUNTER, DERIVE and ABSOLUTE data sources are converted to a rate  
 `Format` Sepcifies the format (*Command* or *JSON*) in which messages are sent to the broker. Must set to `JSON`.
 
-Finally run `collectd`, it starts gathering and publishing metrics.
+Finally run `collectd` to start gathering and publishing metrics.
 ```sh
 $ sudo /opt/collectd/sbin/collectd -t /opt/collectd/etc/collectd.conf  # Tests config and exit
 $ sudo /opt/collectd/sbin/collectd -C /opt/collectd/etc/collectd.conf  # Makes run with the specified config
