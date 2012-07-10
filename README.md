@@ -118,7 +118,8 @@ $ sudo /opt/collectd/sbin/collectd -C /opt/collectd/etc/collectd.conf  # Makes r
 ```
 ## Start retrieving metrics
 
-Once you set up the producer, now it's time to retrieve metrics over WebSocket.
+Once you set up the producer, now it's time to retrieve metrics from the Streaming API over WebSocket.
+The Streaming API returns the results in the CSV format.
 
 
 ### Setup the client
