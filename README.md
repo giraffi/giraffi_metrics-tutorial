@@ -136,13 +136,13 @@ Edit the following lines in `giraffi_metrics_tutorial/index.html` to change sett
 
 
 ```javascript
- 22 $(function () {
- 23   // ************** Settings **************
- 24   var GIRAFFI_URL = "wss://ws.giraffi.jp:4443/",
- 25       SINGLE_LINE_QUERY_STRING = "fields=time,val&tags=load,shortterm",
- 26       MULTI_LINE_QUERY_STRING = "fields=time,val,tags&tags=cpu,user",
- 27       start = document.getElementById("start");
- 28   // **************************************
+22 $(function () {
+23   // ************** Settings **************
+24   var GIRAFFI_URL = "wss://ws.giraffi.jp:4443/",
+25       SINGLE_LINE_QUERY_STRING = "fields=time,val&tags=load,shortterm",
+26       MULTI_LINE_QUERY_STRING = "fields=time,val,tags&tags=cpu,user",
+27       start = document.getElementById("start");
+28   // **************************************
 ```
 
 ### Querying
