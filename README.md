@@ -153,6 +153,6 @@ When retrieving metrics, you can use query parameters for filtering the results.
 `tags` An array parameter that filters which type of metrics to return. The results contain at least one of the specified tags.
 
 ```sh
-wss://ws.giraffi.jp:4443/?fields=time,val&tags=load,shortterm # Returns a single row.
-wss://ws.giraffi.jp:4443/?fields=time,val,tags&tags=cpu,user # Returns multiple rows.
+wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val&tags=load,shortterm # Returns a single row.
+wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val,tags&tags=cpu,user # Returns multiple rows.
 ```
