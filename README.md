@@ -1,7 +1,6 @@
 # Giraffi Metrics tutorial
 
-Here you can find the Getting Started with the **Giraffi Metrics**, resource monitoring service that collects, publishes and retrieves metrics with low latency.   
-We show a sample client app that retrieves metrics over WebSocket and renders timeline charts.
+Here you can find the Getting Started with the **Giraffi Metrics**, resource monitoring service that collects, publishes and retrieves metrics with low latency. We show a sample client app that retrieves metrics over WebSocket and renders timeline charts.
 
   
 # Getting Started
@@ -115,8 +114,7 @@ $ sudo /opt/collectd/sbin/collectd -C /opt/collectd/etc/collectd.conf  # Makes r
 ```
 ## Start retrieving metrics
 
-Once you set up the producer, now it's time to retrieve metrics from the Streaming API over WebSocket.
-The Streaming API returns the results in the CSV format.
+Once you set up the producer, now it's time to retrieve metrics from the Streaming API over WebSocket. The Streaming API returns the results in the CSV format.
 
 
 ### Setup the client
