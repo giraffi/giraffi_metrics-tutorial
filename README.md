@@ -19,7 +19,7 @@ Here you can find the Getting Started with the **Giraffi Metrics**, resource mon
 * [Plugin:AMQP](http://collectd.org/wiki/index.php/Plugin:AMQP): transmits or receives values collected by collectd over the [AMQP](http://www.amqp.org/).
 
 
-## Set up the producer
+## Setup the producer
 
 ###Install collectd
 
