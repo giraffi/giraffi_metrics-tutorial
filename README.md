@@ -160,4 +160,4 @@ When retrieving metrics, you can use query parameters for filtering the results.
 
 ## Note
 
-The Giraffi Metrics provides also the traditional [REST API](https://github.com/giraffi/giraffi_metrics-tutorial/wiki/REST-API) that returns deferred objects in the JSON format.
+The Giraffi Metrics provides also the traditional [REST API](https://github.com/giraffi/giraffi_metrics-tutorial/wiki/REST-API) that returns deferred objects in the JSON or CSV format.
