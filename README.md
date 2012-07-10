@@ -154,7 +154,7 @@ Edit the following lines in `giraffi_metrics_tutorial/index.html` to change sett
 When retrieving metrics, you can use query parameters for filtering the results.
 
 `fields` A array parameter that specifies the fields to return. The available field names are val, time and tags.  
-`tags` A array parameter that filters which type of metrics (memory, cpu, etc.) to return. The results contain at least one of the specified tags.
+`tags` A array parameter that filters which type of metrics to return. The results contain at least one of the specified tags.
 
 ```sh
 wss://ws.giraffi.jp:4443/?fields=time,val&tags=load,shortterm # Returns a single row.
