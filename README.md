@@ -23,7 +23,7 @@ Here you can find the Getting Started with the **Giraffi Metrics**, resource mon
 
 ###Install collectd
 
-Please refer to the [collectd installation guide](http://collectd.org/download.shtml). The version of collectd must be higher than 5.0. 
+Please refer to the [collectd installation guide](http://collectd.org/download.shtml). The version of collectd must be higher than or equal to 5.0. 
 
 ###Configuration
 
