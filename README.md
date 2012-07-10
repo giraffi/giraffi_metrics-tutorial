@@ -138,7 +138,7 @@ Edit the following lines in `giraffi_metrics-tutorial/index.html` to change sett
 ```javascript
 22 $(function () {
 23   // ************** Settings **************
-24   var GIRAFFI_URL = "wss://ws.giraffi.jp:4443/",
+24   var GIRAFFI_URL = "wss://ws.giraffi.jp:443/",
 25       SINGLE_LINE_QUERY_STRING = "fields=time,val&tags=load,shortterm",
 26       MULTI_LINE_QUERY_STRING = "fields=time,val,tags&tags=cpu,user",
 27       start = document.getElementById("start");
@@ -154,9 +154,9 @@ When retrieving metrics, you can use query parameters for filtering the results.
 `src` A string parameter that specifies the source where the metrics have been collected. Equivalent to `Host` in `collectd.conf`.
 
 ##### Returns a single row.
-	wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val&tags=load,shortterm&src=hoge.example.com
+	wss://ws.giraffi.jp:443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val&tags=load,shortterm&src=hoge.example.com
 ##### Returns multiple rows.
-	wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val,tags&tags=cpu,user&src=hoge.example.com
+	wss://ws.giraffi.jp:443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val,tags&tags=cpu,user&src=hoge.example.com
 
 ## Note
 
