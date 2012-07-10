@@ -153,7 +153,8 @@ When retrieving metrics, you can use query parameters for filtering the results.
 `tags` An array parameter that filters which type of metrics to return. The results contain at least one of the specified tags.  
 `src` A string parameter that specifies the source where the metrics have been gathered. Equivalent to `Host` in `collectd.conf`.
 
-```sh
-wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val&tags=load,shortterm&src=hoge.example.com # Returns a single row.
-wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val,tags&tags=cpu,user&src=hoge.example.com # Returns multiple rows.
-```
+#### Returns a single row.
+	wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val&tags=load,shortterm&src=hoge.example.com
+#### Returns multiple rows.
+	wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val,tags&tags=cpu,user&src=hoge.example.com
+
