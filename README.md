@@ -121,7 +121,7 @@ Once you set up and run the producer, now it's time to retrieve metrics from the
 
 ### Setup the client
 ```sh
-$ git://github.com/giraffi/giraffi_metrics-tutorial.git
+$ git clone git://github.com/giraffi/giraffi_metrics-tutorial.git
 ```	
 	
 ### Retrieve metrics over WebSocket
