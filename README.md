@@ -103,7 +103,7 @@ Note: Only *Publish* block is used with the AMQP plug-in for the Giraffi Metrics
 * `VHost` Name of the virtual host on the AMQP broker to use.  
 * `User` `user_id` provided by the Giraffi Metrics.  
 * `Password` `apikey` provided by the Giraffi Metrics.  
-* `Exchange` The exchange to send values to. Currently the available exchange is only **collectd.json.topic**.  
+* `Exchange` The exchange to send values to. Currently the available exchange is only _collectd.json.topic_.  
 * `RoutingKey` The routing key to set on all outgoing messages. The syntax is only valid with "giraffi.collectd.`user_id `"  
 * `Persistent` Selects the delivery method to use. If set to true, delivery is guaranteed.   
 * `StoreRates` Determines whether or not COUNTER, DERIVE and ABSOLUTE data sources are converted to a rate  
@@ -152,9 +152,9 @@ Edit the following lines in `giraffi_metrics-tutorial/index.html` to change sett
 
 When retrieving metrics, you can use query parameters for filtering the results.
 
-`src` Specifies the source where the metrics have been collected. Equivalent to `Host` in `collectd.conf`.  
-`tags` Array parameter that selects the metrics corresponding to tags. The results belong to at least one of the specified tags.  
-`fields` Array parameter that specifies the fields to return. The available field names are val, time, src and tags.  
+* `src` Specifies the source where the metrics have been collected. Equivalent to `Host` in `collectd.conf`.  
+* `tags` Array parameter that selects the metrics corresponding to tags. The results belong to at least one of the specified tags.  
+* `fields` Array parameter that specifies the fields to return. The available field names are val, time, src and tags.  
 
 ##### Returns a single row.
 	wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val&tags=load,shortterm&src=hoge.example.com
