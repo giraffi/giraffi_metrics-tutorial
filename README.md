@@ -164,8 +164,9 @@ When retrieving metrics, you can use query parameters for filtering the results.
 ## Note
 
 * The Giraffi Metrics provides also the traditional [REST API](https://github.com/giraffi/giraffi_metrics-tutorial/wiki/REST-API) that returns deferred objects in the JSON or CSV format.
-* If you are blocked from Streaming API, please import the [root certificate](https://raw.github.com/giraffi/giraffi_metrics-tutorial/master/Cert/HiganWorks-CA.pem) into your browser or use `open` if using OS X.
+* If you are blocked from Streaming API, please import the [root certificate](https://raw.github.com/giraffi/giraffi_metrics-tutorial/master/Cert/HiganWorks-CA.pem) into your browser or use `open` command on OS X.
+
 ```sh
-curl -O https://raw.github.com/giraffi/giraffi_metrics-tutorial/master/Cert/HiganWorks-CA.pem
-open HiganWorks-CA.pem
+$ curl -O https://raw.github.com/giraffi/giraffi_metrics-tutorial/master/Cert/HiganWorks-CA.pem
+$ open HiganWorks-CA.pem
 ```
