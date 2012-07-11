@@ -18,7 +18,7 @@ For more details, please refer to the Giraffi Metrics [wiki](https://github.com/
 * user_id: Unique number provided by the Giraffi Metrics.
 * apikey: Authentication token provided by the Giraffi Metrics.
 * collectd: The system statistics collection daemon. collectd-5.0 or higher is required.
-* [Plugin:AMQP](http://collectd.org/wiki/index.php/Plugin:AMQP): A plugin for collectd that transmits or receives values collected by collectd over the [AMQP](http://www.amqp.org/).
+* [Plugin:AMQP](http://collectd.org/wiki/index.php/Plugin:AMQP): A plugin for collectd that transmits or receives values collected over the [AMQP](http://www.amqp.org/).
 
 
 ## Setup the producer
