@@ -98,16 +98,16 @@ And configure the AMQP plug-in settings with a server-specific AMQP Routing Key 
 
 Note: Only *Publish* block is used with the AMQP plug-in for the Giraffi Metrics. 
 
-`Host` Hostname or IP-address of the AMQP broker.  
-`Port` Service name or port number on which the AMQP broker accepts connections.  
-`VHost` Name of the virtual host on the AMQP broker to use.  
-`User` `user_id` provided by the Giraffi Metrics.  
-`Password` `apikey` provided by the Giraffi Metrics.  
-`Exchange` The exchange to send values to. Currently the available exchange is only `collectd.json.topic`.  
-`RoutingKey` The routing key to set on all outgoing messages. The syntax is only valid with "giraffi.collectd.`user_id `"  
-`Persistent` Selects the delivery method to use. If set to true, delivery is guaranteed.   
-`StoreRates` Determines whether or not COUNTER, DERIVE and ABSOLUTE data sources are converted to a rate  
-`Format` Sepcifies the format (*Command* or *JSON*) in which messages are sent to the broker. Must set to `JSON`.
+* `Host` Hostname or IP-address of the AMQP broker.  
+* `Port` Service name or port number on which the AMQP broker accepts connections.  
+* `VHost` Name of the virtual host on the AMQP broker to use.  
+* `User` `user_id` provided by the Giraffi Metrics.  
+* `Password` `apikey` provided by the Giraffi Metrics.  
+* `Exchange` The exchange to send values to. Currently the available exchange is only **collectd.json.topic**.  
+* `RoutingKey` The routing key to set on all outgoing messages. The syntax is only valid with "giraffi.collectd.`user_id `"  
+* `Persistent` Selects the delivery method to use. If set to true, delivery is guaranteed.   
+* `StoreRates` Determines whether or not COUNTER, DERIVE and ABSOLUTE data sources are converted to a rate  
+* `Format` Sepcifies the format (*Command* or *JSON*) in which messages are sent to the broker. Must set to `JSON`.
 
 Finally run `collectd` to start gathering and publishing metrics.
 ```sh
