@@ -29,7 +29,7 @@ Please refer to the [collectd installation guide](http://collectd.org/download.s
 
 ###Configuration
 
-The configuration file can be found, e.g. `/opt/collectd/etc/collectd.conf`.   
+The configuration file can be found, e.g., `/opt/collectd/etc/collectd.conf`.   
  First in the `Global` section, set `Interval` to a value between 1 and 60 seconds at least.
 ```sh
 ##############################################################################
