@@ -104,7 +104,7 @@ Note: Only *Publish* block is used with the AMQP plug-in for the Giraffi Metrics
 `User` `user_id` provided by the Giraffi Metrics.  
 `Password` `apikey` provided by the Giraffi Metrics.  
 `Exchange` The exchange to send values to. Currently the available exchange is only `collectd.json.topic`.  
-`RoutingKey` The routing key to set on all outgoing messages. The syntax is valid with only "giraffi.collectd.`user_id `"  
+`RoutingKey` The routing key to set on all outgoing messages. The syntax is only valid with "giraffi.collectd.`user_id `"  
 `Persistent` Selects the delivery method to use. If set to true, delivery is guaranteed.   
 `StoreRates` Determines whether or not COUNTER, DERIVE and ABSOLUTE data sources are converted to a rate  
 `Format` Sepcifies the format (*Command* or *JSON*) in which messages are sent to the broker. Must set to `JSON`.
