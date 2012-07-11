@@ -156,9 +156,9 @@ When retrieving metrics, you can use query parameters for filtering the results.
 `src` Specifies the source where the metrics have been collected. Equivalent to `Host` in `collectd.conf`.
 
 ##### Returns a single row.
-	wss://ws.giraffi.jp:443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val&tags=load,shortterm&src=hoge.example.com
+	wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val&tags=load,shortterm&src=hoge.example.com
 ##### Returns multiple rows.
-	wss://ws.giraffi.jp:443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val,tags&tags=cpu,user&src=hoge.example.com
+	wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val,tags&tags=cpu,user&src=hoge.example.com
 
 ## Note
 
