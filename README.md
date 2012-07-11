@@ -122,6 +122,7 @@ Once you set up and run the producer, now it's time to retrieve metrics from the
 ### Setup the client
 ```sh
 $ git clone git://github.com/giraffi/giraffi_metrics-tutorial.git
+$ cd giraffi_metrics-tutorial
 ```	
 	
 ### Retrieve metrics over WebSocket
@@ -140,7 +141,7 @@ Edit the following lines in `giraffi_metrics-tutorial/index.html` to change sett
 ```javascript
 22 $(function () {
 23   // ************** Settings **************
-24   var GIRAFFI_URL = "wss://ws.giraffi.jp:443/",
+24   var GIRAFFI_URL = "wss://ws.giraffi.jp:4443/",
 25       SINGLE_LINE_QUERY_STRING = "fields=time,val&tags=load,shortterm",
 26       MULTI_LINE_QUERY_STRING = "fields=time,val,tags&tags=cpu,user",
 27       start = document.getElementById("start");
