@@ -152,9 +152,9 @@ Edit the following lines in `giraffi_metrics-tutorial/index.html` to change sett
 
 When retrieving metrics, you can use query parameters for filtering the results.
 
-`fields` Array parameter that specifies the fields to return. The available field names are val, time, src and tags.  
-`tags` Array parameter that selects the metrics corresponding to tags. The results belong to at least one of the specified tags.  
 `src` Specifies the source where the metrics have been collected. Equivalent to `Host` in `collectd.conf`.
+`tags` Array parameter that selects the metrics corresponding to tags. The results belong to at least one of the specified tags.  
+`fields` Array parameter that specifies the fields to return. The available field names are val, time, src and tags.  
 
 ##### Returns a single row.
 	wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val&tags=load,shortterm&src=hoge.example.com
