@@ -101,8 +101,8 @@ Note: Only *Publish* block is used with the AMQP plug-in for the Giraffi Metrics
 * `Host` Hostname or IP-address of the AMQP broker.  
 * `Port` Service name or port number on which the AMQP broker accepts connections.  
 * `VHost` Name of the virtual host on the AMQP broker to use.  
-* `User` `user_id` provided by the Giraffi Metrics.  
-* `Password` `apikey` provided by the Giraffi Metrics.  
+* `User` Set to `user_id` provided by the Giraffi Metrics.  
+* `Password` Set to `apikey` provided by the Giraffi Metrics.  
 * `Exchange` The exchange to send values to. Currently the available exchange is only _collectd.json.topic_.  
 * `RoutingKey` The routing key to set on all outgoing messages. The syntax is only valid with "giraffi.collectd.`user_id `"  
 * `Persistent` Selects the delivery method to use. If set to true, delivery is guaranteed.   
