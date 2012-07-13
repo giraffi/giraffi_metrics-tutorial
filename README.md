@@ -1,6 +1,6 @@
 # Giraffi Metrics tutorial
 
-Here you can find the Getting Started with the **Giraffi Metrics**, a resource monitoring service that subscribes, stores and pushes metrics with low latency. After setting up a producer that publishes metrics, you will run a sample app that retrieves metrics from the Streaming API over WebSocket and renders timeline charts.   
+Here you can find the Getting Started with the **Giraffi Metrics**, a resource monitoring service that subscribes, stores and pushes metrics with low latency. After setting up a producer to publish metrics, you will run a sample app that retrieves metrics from the Streaming API over WebSocket and renders timeline charts.   
    
 For more details, please refer to the Giraffi Metrics [wiki](https://github.com/giraffi/giraffi_metrics-tutorial/wiki/Giraffi-Mertrics). 
 
@@ -9,7 +9,7 @@ For more details, please refer to the Giraffi Metrics [wiki](https://github.com/
 
 ## Scenario
 
-1. A procuder ([collectd](http://collectd.org/)) gathers and sends metrics continuously to the Giraffi Metrics which behaves as a message broker. 
+1. A procuder ([collectd](http://collectd.org/)) gathers and sends metrics continuously, e.g., every 5 seconds to the Giraffi Metrics which behaves as a message broker. 
 2. An app retrieves metrics from the Giraffi Metrics, aka [Streaming API](https://github.com/giraffi/giraffi_metrics-tutorial/wiki/Streaming-API) over WebSocket.
 3. This app starts rendering timeline charts parsing the retrieved metrics.
 
