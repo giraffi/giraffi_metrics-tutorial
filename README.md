@@ -1,6 +1,6 @@
 # Giraffi Metrics tutorial
 
-Here you can find the Getting Started with the **Giraffi Metrics**, a resource monitoring service that subscribes, stores and pushes metrics with low latency. After setting up a producer to publish metrics to Giraffi Metrics, you will run a sample app that retrieves metrics from the Streaming API over WebSocket and renders timeline charts.   
+Here you can find the Getting Started with the **Giraffi Metrics**, a resource monitoring service that subscribes, stores and pushes metrics with low latency. After setting up a producer to publish metrics to the Giraffi Metrics, you will run a sample app that retrieves metrics from the Streaming API over WebSocket and renders timeline charts.   
    
 For more details, please refer to the Giraffi Metrics [wiki](https://github.com/giraffi/giraffi_metrics-tutorial/wiki/Giraffi-Mertrics). 
 
