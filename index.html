@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Giraffi Metrics by giraffi</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Giraffi Metrics</h1>
+        <p>Getting started with the Giraffi Metrics</p>
+
+        <p class="view"><a href="https://github.com/giraffi/giraffi_metrics-tutorial">View the Project on GitHub <small>giraffi/giraffi_metrics-tutorial</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/giraffi/giraffi_metrics-tutorial/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/giraffi/giraffi_metrics-tutorial/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/giraffi/giraffi_metrics-tutorial">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Giraffi Metrics tutorial</h1>
+
+<p>Here you can find the Getting Started with the <strong>Giraffi Metrics</strong>, a resource monitoring service that subscribes, stores and pushes metrics with low latency. After setting up a producer to publish metrics to the Giraffi Metrics, you will run a sample app that retrieves metrics from the Streaming API over WebSocket and renders timeline charts.   </p>
+
+<p>For more details, please refer to the Giraffi Metrics <a href="https://github.com/giraffi/giraffi_metrics-tutorial/wiki/Giraffi-Mertrics">wiki</a>. </p>
+
+<h1>Getting Started</h1>
+
+<h2>Scenario</h2>
+
+<ol>
+<li>A procuder (<a href="http://collectd.org/">collectd</a>) gathers and sends metrics, for instance every 5 seconds continuously to the Giraffi Metrics which behaves as a message broker. </li>
+<li>An app retrieves metrics from the Giraffi Metrics, aka <a href="https://github.com/giraffi/giraffi_metrics-tutorial/wiki/Streaming-API">Streaming API</a> over WebSocket.</li>
+<li>This app starts rendering timeline charts parsing the retrieved metrics.</li>
+</ol><h2>Requirements</h2>
+
+<ul>
+<li>user_id: Unique number provided by the Giraffi Metrics.</li>
+<li>apikey: Authentication token provided by the Giraffi Metrics.</li>
+<li>collectd: The system statistics collection daemon. collectd-5.0 or higher is required.</li>
+<li>
+<a href="http://collectd.org/wiki/index.php/Plugin:AMQP">Plugin:AMQP</a>: A plugin for collectd that transmits or receives values collected over the <a href="http://www.amqp.org/">AMQP</a>.</li>
+</ul><h2>Setup the producer</h2>
+
+<h3>Install collectd</h3>
+
+<p>Please refer to the <a href="http://collectd.org/download.shtml">collectd installation guide</a>. The version of collectd must be higher than or equal to 5.0. </p>
+
+<h3>Configuration</h3>
+
+<p>The configuration file can be found, e.g., <code>/opt/collectd/etc/collectd.conf</code>.<br>
+ First in the Global section, set "Interval" to a value between 1 and 60 seconds at least.</p>
+
+<div class="highlight">
+<pre><span class="c">##############################################################################</span>
+<span class="c"># Global                                                                     #   </span>
+<span class="c">#----------------------------------------------------------------------------#</span>
+<span class="c"># Global settings for the daemon.                                            #   </span>
+<span class="c">##############################################################################</span>
+
+<span class="c">#Hostname    ""  </span>
+<span class="c">#FQDNLookup   true</span>
+<span class="c">#BaseDir     "/opt/collectd/var/lib/collectd"</span>
+<span class="c">#PIDFile     "/opt/collectd/var/run/collectd.pid"</span>
+<span class="c">#PluginDir   "/opt/collectd/lib/collectd"collectd</span>
+<span class="c">#TypesDB     "/opt/collectd/share/collectd/types.db"</span>
+Interval      10  <span class="c"># Set to 10 seconds</span>
+<span class="c">#Timeout      2   </span>
+<span class="c">#ReadThreads  5</span>
+</pre>
+</div>
+
+
+<p>Then enable the AMQP plug-in in LoadPlugin section.</p>
+
+<div class="highlight">
+<pre><span class="c">##############################################################################</span>
+<span class="c"># LoadPlugin section                                                         #</span>
+<span class="c">#----------------------------------------------------------------------------#</span>
+<span class="c"># Lines beginning with a single `#' belong to plugins which have been built  #</span>
+<span class="c"># but are disabled by default.                                               #</span>
+<span class="c">#                                                                            #</span>
+<span class="c"># Lines begnning with `##' belong to plugins which have not been built due   #</span>
+<span class="c"># to missing dependencies or because they have been deactivated explicitly.  #</span>
+<span class="c">##############################################################################</span>
+
+LoadPlugin amqp
+<span class="c">##LoadPlugin apache</span>
+<span class="c">#LoadPlugin apcups</span>
+
+snip..
+</pre>
+</div>
+
+
+<p>And configure the AMQP plug-in settings with a server-specific AMQP Routing Key and user credentials.</p>
+
+<div class="highlight">
+<pre><span class="c">##############################################################################</span>
+<span class="c"># Plugin configuration                                                       #</span>
+<span class="c">#----------------------------------------------------------------------------#</span>
+<span class="c"># In this section configuration stubs for each plugin are provided. A desc-  #</span>
+<span class="c"># ription of those options is available in the collectd.conf(5) manual page. #</span>
+<span class="c">##############################################################################</span>
+
+<span class="c">## Send values to an AMQP broker</span>
+&lt;Plugin <span class="s2">"amqp"</span>&gt;
+ &lt;Publish <span class="s2">"name"</span>&gt;
+    Host <span class="s2">"broker.giraffi.jp"</span>
+    Port <span class="s2">"15671"</span>
+    VHost <span class="s2">"/"</span>
+    User <span class="s2">"256"</span>
+    Password <span class="s2">"d229c5cf-370b-4ab3-b34c-9adbba9aa438"</span>
+    Exchange <span class="s2">"collectd.json.topic"</span>
+    RoutingKey <span class="s2">"giraffi.collectd.256"</span>
+    Persistent <span class="nb">false</span>
+<span class="nb">    </span>StoreRates <span class="nb">false</span>
+<span class="nb">    </span>Format <span class="s2">"JSON"</span>
+  &lt;/Publish&gt;
+&lt;/Plugin&gt;
+</pre>
+</div>
+
+
+<p>Note: Only <em>Publish</em> block is used with the AMQP plug-in for the Giraffi Metrics. </p>
+
+<ul>
+<li>
+<code>Host</code> Hostname or IP-address of the AMQP broker.<br>
+</li>
+<li>
+<code>Port</code> Service name or port number on which the AMQP broker accepts connections.<br>
+</li>
+<li>
+<code>VHost</code> Name of the virtual host on the AMQP broker to use.<br>
+</li>
+<li>
+<code>User</code> Set to <code>user_id</code> provided by the Giraffi Metrics.<br>
+</li>
+<li>
+<code>Password</code> Set to <code>apikey</code> provided by the Giraffi Metrics.<br>
+</li>
+<li>
+<code>Exchange</code> The exchange to send values to. Currently the available exchange is only <em>collectd.json.topic</em>.<br>
+</li>
+<li>
+<code>RoutingKey</code> The routing key to set on all outgoing messages. The syntax is only valid with "giraffi.collectd.<code>user_id</code>"<br>
+</li>
+<li>
+<code>Persistent</code> Selects the delivery method to use. If set to true, delivery is guaranteed.<br>
+</li>
+<li>
+<code>StoreRates</code> Determines whether or not COUNTER, DERIVE and ABSOLUTE data sources are converted to a rate<br>
+</li>
+<li>
+<code>Format</code> Sepcifies the format (<em>Command</em> or <em>JSON</em>) in which messages are sent to the broker. Must set to <code>JSON</code>.</li>
+</ul><p>Finally run collectd to start gathering and publishing metrics.</p>
+
+<div class="highlight">
+<pre><span class="nv">$ </span>sudo /opt/collectd/sbin/collectd -t /opt/collectd/etc/collectd.conf  <span class="c"># Tests config and exit</span>
+<span class="nv">$ </span>sudo /opt/collectd/sbin/collectd -C /opt/collectd/etc/collectd.conf  <span class="c"># Makes run with the specified config</span>
+</pre>
+</div>
+
+
+<h2>Start retrieving metrics</h2>
+
+<p>Once you set up and run the producer, now it's time to retrieve metrics from the <a href="https://github.com/giraffi/giraffi_metrics-tutorial/wiki/Streaming-API">Streaming API</a> over WebSocket. The Streaming API returns the results in a so-called <a href="http://en.wikipedia.org/wiki/Comma-separated_values">CSV</a> format, each row is located on a separate line, delimited by a line break (LF) and its fields, separated by commas, never contain line breaks (LF), double quotes and commas.</p>
+
+<h3>Setup the app</h3>
+
+<div class="highlight">
+<pre><span class="nv">$ </span>git clone git://github.com/giraffi/giraffi_metrics-tutorial.git
+<span class="nv">$ </span><span class="nb">cd </span>giraffi_metrics-tutorial
+</pre>
+</div>
+
+
+<h3>Retrieve metrics over WebSocket</h3>
+
+<ol>
+<li>Open <code>giraffi_metrics-tutorial/index.html</code> with the WebSocket compliant browser. </li>
+<li>Enter <code>Apikey</code> and <code>Src</code> (<em>hostname</em> where the collectd daemon is gathering resource info). </li>
+<li>And then click <code>Start</code> to connect to the Giraffi Metrics.</li>
+<li>The app starts retrieving metrics and displays timeline charts.</li>
+</ol><h3>Change settings</h3>
+
+<p>Edit the following lines in <code>giraffi_metrics-tutorial/index.html</code> to change settings (endpoint uri, query string, etc.). </p>
+
+<div class="highlight">
+<pre><span class="mi">22</span> <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="mi">23</span>   <span class="c1">// ************** Settings **************</span>
+<span class="mi">24</span>   <span class="kd">var</span> <span class="nx">GIRAFFI_URL</span> <span class="o">=</span> <span class="s2">"wss://ws.giraffi.jp:4443/"</span><span class="p">,</span>
+<span class="mi">25</span>       <span class="nx">SINGLE_LINE_QUERY_STRING</span> <span class="o">=</span> <span class="s2">"fields=time,val&amp;tags=load,shortterm"</span><span class="p">,</span>
+<span class="mi">26</span>       <span class="nx">MULTI_LINE_QUERY_STRING</span> <span class="o">=</span> <span class="s2">"fields=time,val,tags&amp;tags=cpu,user"</span><span class="p">,</span>
+<span class="mi">27</span>       <span class="nx">start</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"start"</span><span class="p">);</span>
+<span class="mi">28</span>   <span class="c1">// **************************************</span>
+</pre>
+</div>
+
+
+<h3>Querying</h3>
+
+<p>When retrieving metrics, you can use query parameters for filtering the results.</p>
+
+<ul>
+<li>
+<code>src</code> Specifies the source where the metrics have been collected. Equivalent to <code>Host</code> in <code>collectd.conf</code>.<br>
+</li>
+<li>
+<code>tags</code> Array parameter that selects the metrics corresponding to tags. The results belong to at least one of the specified tags.<br>
+</li>
+<li>
+<code>fields</code> Array parameter that specifies the fields to return. The available field names are val, time, src and tags.<br>
+</li>
+</ul><h4>single row</h4>
+
+<pre><code>wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val&amp;tags=load,shortterm&amp;src=hoge.example.com
+</code></pre>
+
+<h4>multiple rows</h4>
+
+<pre><code>wss://ws.giraffi.jp:4443/d229c5cf-370b-4ab3-b34c-9adbba9aa438/?fields=time,val,tags&amp;tags=cpu,user&amp;src=hoge.example.com
+</code></pre>
+
+<h2>Note</h2>
+
+<ul>
+<li>The Giraffi Metrics provides also the traditional <a href="https://github.com/giraffi/giraffi_metrics-tutorial/wiki/REST-API">REST API</a> that returns deferred objects in the JSON or CSV format.</li>
+<li>If you are blocked from Streaming API, please import the <a href="https://raw.github.com/giraffi/giraffi_metrics-tutorial/master/Cert/HiganWorks-CA.pem">root certificate</a> into your browser or use <code>open</code> command on OS X.</li>
+</ul><div class="highlight">
+<pre><span class="nv">$ </span>curl -O https://raw.github.com/giraffi/giraffi_metrics-tutorial/master/Cert/HiganWorks-CA.pem
+<span class="nv">$ </span>open HiganWorks-CA.pem
+</pre>
+</div>
+
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/giraffi">giraffi</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
